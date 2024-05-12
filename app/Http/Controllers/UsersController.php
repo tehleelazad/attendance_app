@@ -9,23 +9,22 @@ class UsersController extends Controller
     public function createuser()
     {
         $role = role::all();
-        return view('role.attendanceuser', compact('role'));
+        // return view('role.attendanceuser', compact('role'));
     }
 
     public function storeuser(Request $request)
-    {
-        $request->validate([
-            // 'email' => 'required|email|unique:user,email',
-            // 'password' => 'required|min:6',
-            // 'is_active' => 'required',
-            // 'role_id' => 'required|exists:role,id',
+     {
+     $request->validate([
+        //     'email' => 'required|email|unique:user,email',
+        //     'password' => 'required|min:6',
+        //     'is_active' => 'required',
+        //     'role_id' => 'required|exists:role,id',
         
-        ]);
-        
-
-        User::create($request->all());
-
-        return redirect()->route('attendanceuser')
-            ->with('success', 'User created successfully.');
+     ]);  
+    
+ $user = User::create($request->all());    
+   return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
     }
+    
+
 }

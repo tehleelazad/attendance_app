@@ -8,15 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-   
-
-    function index(Request $request)
+    public function index(Request $request)
     {
         $user = usermodel::where('username', $request->username)->first(); // Adjusted model usage
-        // print_r($data);
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
-                'message' => ['These credentials do not match our records.']
+                'message' => 'credentials does not match'
             ], 404);
         }
 
@@ -24,7 +22,7 @@ class UserController extends Controller
 
         $response = [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
         ];
 
         return response($response, 201);

@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Models;
-use Illuminate\Contracts\Auth\MustVerifyusername;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User2 as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-class usermodel extends Authenticatable
+
+class User2 extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -28,6 +31,7 @@ class usermodel extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'password',
         'remember_token',
     ];
 
@@ -36,5 +40,7 @@ class usermodel extends Authenticatable
      *
      * @var array<string, string>
      */
-  
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

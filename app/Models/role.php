@@ -14,4 +14,11 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
+    public static function rules()
+    {
+        return [
+            'title' => 'required|unique:role,title'
+        ];
+    }
+
 }

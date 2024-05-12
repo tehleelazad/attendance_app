@@ -5,7 +5,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsersController;
-
 use Illuminate\Http\Request;
 
     Route::view('userform', 'attendancelogin')->name('userform');
@@ -15,9 +14,7 @@ use Illuminate\Http\Request;
     // Route ::post('processform',[login::class,'login'] );
     Route::post('/processform', [login::class, 'login']);
     // Applying middleware to a single route
-
 Route::view('dashboard1', 'dashboard1')->middleware('checklogin');
-
 Route::view('userform', 'attendancelogin')->name('userform');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/role/create', [RoleController::class,'createForm'])->name('role.create');
@@ -45,16 +42,7 @@ Route::post('/role/leave', [leavecontroller::class,'store'])->name('store');
 Route::get('/leave/{id}/edit', [leavecontroller::class, 'edit'])->name('edit');
 Route::put('/leave/{id}', [leavecontroller::class, 'update'])->name('update');
 Route::delete('/leave/{id}', [leavecontroller::class, 'destroy'])->name('delete');
-
-
-
-
-
-
 Route::get('/role/userprofile', [UserProfileController::class,'create'])->name('userprofile')->middleware('checklogin');
-
-
-
 // Route to show the user profile creation form
 Route::get('/userprofile/create', [UserProfileController::class, 'create'])->name('userprofile.create');
 
